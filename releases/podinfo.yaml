@@ -9,3 +9,15 @@ spec:
     repository: https://stefanprodan.github.io/podinfo
     name: podinfo
     version: 3.2.0
+  values:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+      path: /*
+      hosts:
+        - podinfo.flux.benjaminlevesque.com
+      tls:
+        - secretName: podinfo-tls
+          hosts:
+            - podinfo.flux.benjaminlevesque.com
