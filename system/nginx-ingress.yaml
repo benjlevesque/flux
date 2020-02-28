@@ -1,0 +1,13 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nginx-ingress
+  namespace: kube-system
+spec:
+  releaseName: nginx-ingress
+  chart:
+    name: stable/nginx-ingress
+    version: 3.2.0
+  values:
+    rbac:
+      create: true
