@@ -3,9 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: podinfo-deployment
-  annotations:
-    fluxcd.io/locked: 'true'
-    fluxcd.io/locked_user: Benjamin LEVESQUE <14175665+benjlevesque@users.noreply.github.com>
 spec:
   replicas: 1
   selector:
