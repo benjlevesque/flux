@@ -1,7 +1,11 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: podinfo-deployment
+  annotations:
+    fluxcd.io/locked: 'true'
+    fluxcd.io/locked_user: Benjamin LEVESQUE <14175665+benjlevesque@users.noreply.github.com>
 spec:
   replicas: 1
   selector:
@@ -13,13 +17,13 @@ spec:
         app: podinfo
     spec:
       containers:
-        - name: podinfo
-          image: stefanprodan/podinfo
-          ports:
-            - containerPort: 9898
-          env:
-            - name: SECRET_VALUE
-              valueFrom:
-                secretKeyRef:
-                  name: my-secret
-                  key: my-secret
+      - name: podinfo
+        image: stefanprodan/podinfo
+        ports:
+        - containerPort: 9898
+        env:
+        - name: SECRET_VALUE
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: my-secret
