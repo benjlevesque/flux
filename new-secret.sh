@@ -9,7 +9,7 @@ mkdir -p secrets
 
 
 SECRET=$(kubectl create secret generic $NAME --dry-run --from-literal=$NAME="$VALUE" -o json)
-echo $SECRET | kubeseal --controller-name sealed-secrets --format yaml  > secrets/$NAME.yaml
+echo $SECRET | kubeseal --format yaml  > secrets/$NAME.yaml
 
 yq d -i secrets/$NAME.yaml metadata.creationTimestamp 
 yq d -i secrets/$NAME.yaml spec.template.metadata.creationTimestamp 
