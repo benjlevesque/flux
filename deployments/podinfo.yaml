@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podinfo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: podinfo
+  template:
+    metadata:
+      labels:
+        app: podinfo
+    spec:
+      containers:
+        - name: podinfo
+          image: stefanprodan/podinfo
+          ports:
+            - containerPort: 9898
+          env:
+            - name: SECRET_VALUE
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: my-secret
